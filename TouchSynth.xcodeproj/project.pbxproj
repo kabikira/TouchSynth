@@ -14,6 +14,8 @@
 		3B2468CD293DAB53003220C2 /* TouchSynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2468CC293DAB53003220C2 /* TouchSynthTests.swift */; };
 		3B2468D7293DAB54003220C2 /* TouchSynthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2468D6293DAB54003220C2 /* TouchSynthUITests.swift */; };
 		3B2468D9293DAB54003220C2 /* TouchSynthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2468D8293DAB54003220C2 /* TouchSynthUITestsLaunchTests.swift */; };
+		3B3977BD2940452E0058CD38 /* SignalGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3977BC2940452E0058CD38 /* SignalGenerator.swift */; };
+		3B3977C12940FAED0058CD38 /* TouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3977C02940FAED0058CD38 /* TouchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		3B2468D2293DAB54003220C2 /* TouchSynthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchSynthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B2468D6293DAB54003220C2 /* TouchSynthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchSynthUITests.swift; sourceTree = "<group>"; };
 		3B2468D8293DAB54003220C2 /* TouchSynthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchSynthUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3B3977BC2940452E0058CD38 /* SignalGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalGenerator.swift; sourceTree = "<group>"; };
+		3B3977C02940FAED0058CD38 /* TouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				3B2468BB293DAB52003220C2 /* TouchSynthApp.swift */,
 				3B2468BD293DAB52003220C2 /* ContentView.swift */,
+				3B3977C02940FAED0058CD38 /* TouchView.swift */,
+				3B3977BC2940452E0058CD38 /* SignalGenerator.swift */,
 				3B2468BF293DAB53003220C2 /* Assets.xcassets */,
 				3B2468C1293DAB53003220C2 /* Preview Content */,
 			);
@@ -257,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B3977BD2940452E0058CD38 /* SignalGenerator.swift in Sources */,
+				3B3977C12940FAED0058CD38 /* TouchView.swift in Sources */,
 				3B2468BE293DAB52003220C2 /* ContentView.swift in Sources */,
 				3B2468BC293DAB52003220C2 /* TouchSynthApp.swift in Sources */,
 			);

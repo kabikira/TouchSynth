@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+//    var signalGenerator = SignalGenerator()
+//    var gestureTouch = GestureTouch()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("\(UIScreen.main.bounds.width)")
+            Text("\(UIScreen.main.bounds.height)")
+//            Button("start") {
+//                signalGenerator.signalPlay()
+//            }
+//            Button("stop") {
+//                signalGenerator.signalStop()
+//            }
+            TouchView()
         }
-        .padding()
+        
     }
 }
 
