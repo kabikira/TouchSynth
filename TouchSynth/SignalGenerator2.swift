@@ -1,14 +1,15 @@
 //
-//  SignalGenerator.swift
+//  SignalGenerator2.swift
 //  TouchSynth
 //
-//  Created by koala panda on 2022/12/07.
+//  Created by koala panda on 2022/12/08.
 //
+
 
 import Foundation
 import AVFoundation
 
-class SignalGenerator {
+class SignalGenerator2 {
 // func外で宣言すると落ちる
 //    let engine = AVAudioEngine()
     func signalPlay() {
@@ -40,7 +41,7 @@ class SignalGenerator {
             return value > 0.0 ? value : defaultValue
         }
         // 音の高さ
-        let frequency = getFloatForKeyOrDefault(OptionNames.frequency, 1000)
+        let frequency = getFloatForKeyOrDefault(OptionNames.frequency, 500)
         // 振り幅
         let amplitude = min(max(getFloatForKeyOrDefault(OptionNames.amplitude, 0.5), 0.0), 1.0)
         // 音の長さ
@@ -198,3 +199,4 @@ class SignalGenerator {
     }
         
 }
+
