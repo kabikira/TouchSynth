@@ -19,32 +19,14 @@ struct TouchView: View {
     @State var previousLocationY = 0
     @State var count = 0
     
+    var screenSize = UIScreen.main.bounds.width
+    
     var drag: some Gesture {
         DragGesture(minimumDistance: 0.5, coordinateSpace: .local)
             .onChanged {
                 dragGesture in
                 
                 
-//                if previousLocationX == Int(dragGesture.location.x) {
-//                    touchSensitvity.isAdjust = true
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//                        touchSensitvity.timer?.invalidate()
-//                        touchSensitvity.timer = nil
-//                        touchSensitvity.isAdjust = false
-//                    }
-//
-//                } else if previousLocationY == Int(dragGesture.location.y) {
-//                    touchSensitvity.isAdjust = true
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//                        touchSensitvity.timer?.invalidate()
-//                        touchSensitvity.timer = nil
-//                        touchSensitvity.isAdjust = false
-//                    }
-//
-//                } else {
-//                    touchSensitvity.isAdjust = false
-//                }
-//                touchSensitvity.isAdjust = true
                 if self.count < 13 {
                     self.signalGenerator.signalPlay()
                     self.count += 1
@@ -53,21 +35,23 @@ struct TouchView: View {
                     previousLocationY = Int(dragGesture.location.y)
                     print("タッチした座標(x\(dragGesture.location.x),y\(dragGesture.location.y))")
                     
-                } else {
+                } else if self.count == 13 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                            touchSensitvity.timer?.invalidate()
+                                            touchSensitvity.timer = nil
+                                            touchSensitvity.isAdjust = false
+                                        }
+                }else {
                     touchSensitvity.isAdjust = true
                 }
                 
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//                    touchSensitvity.timer?.invalidate()
-//                    touchSensitvity.timer = nil
-//                    touchSensitvity.isAdjust = false
-//                }
             }
             .onEnded { _ in
                 print("離した")
                 self.count = 0
                 touchSensitvity.isAdjust = false
                 print(previousLocationX,previousLocationY)
+                print(screenSize)
                 
             }
     }
