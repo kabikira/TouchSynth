@@ -21,11 +21,18 @@ struct TouchView: View {
     
     var screenSize = UIScreen.main.bounds.width
     
+    var tap: some Gesture {
+        TapGesture()
+            .onEnded {
+                self.signalGenerator.signalPlay()
+                print("タップしたよ")
+            }
+    }
+    
     var drag: some Gesture {
         DragGesture(minimumDistance: 0.5, coordinateSpace: .local)
             .onChanged {
                 dragGesture in
-                
                 
                 if self.count < 13 {
                     self.signalGenerator.signalPlay()
@@ -33,7 +40,7 @@ struct TouchView: View {
                     print(self.count)
                     previousLocationX = Int(dragGesture.location.x)
                     previousLocationY = Int(dragGesture.location.y)
-                    print("タッチした座標(x\(dragGesture.location.x),y\(dragGesture.location.y))")
+                    print("ドラッグした座標(x\(dragGesture.location.x),y\(dragGesture.location.y))")
                     
                 } else if self.count == 13 {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -47,11 +54,12 @@ struct TouchView: View {
                 
             }
             .onEnded { _ in
-                print("離した")
+                print("ドラッグ離した")
                 self.count = 0
                 touchSensitvity.isAdjust = false
                 print(previousLocationX,previousLocationY)
                 print(screenSize)
+                print(Int(screenSize/13))
                 
             }
     }
@@ -64,6 +72,7 @@ struct TouchView: View {
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
                 .border(Color.blue, width: 4)
                 .gesture(drag)
+                .gesture(tap)
                 .disabled(touchSensitvity.isAdjust)
             
         }
