@@ -12,13 +12,15 @@ import UIKit
 class SignalGenerator: ObservableObject {
     @Published var xLocation = 0
     @Published var yLocation = 0
-    var screenSize = Int(UIScreen.main.bounds.width)/13
+    var screenSize = Int(UIScreen.main.bounds.width)/12
+    // タッチしたx座標によってして周波数が変わる
+    var freq: Float = 0
     
 // func外で宣言すると落ちる
 //    let engine = AVAudioEngine()
     func signalPlay() {
         print("!!!!!!!!!!!!!\(screenSize + screenSize)")
-        print("\(xLocation)")
+        print("signalGenerator",xLocation, yLocation)
         let userDefaults = UserDefaults.standard
 
         struct OptionNames {
@@ -29,25 +31,41 @@ class SignalGenerator: ObservableObject {
             static let amplitude = "amplitude"
         }
 
-//        if CommandLine.arguments.contains("-help") || CommandLine.arguments.contains("-h") {
-//            print("SignalGenerator\n")
-//            print("Usage:    SignalGenerator [-signal SIGNAL] [-freq FREQUENCY] [-duration DURATION] [-output FILEPATH] [-amplitude VALUE]\n")
-//            print("Options:\n")
-//            print("-\(OptionNames.signal)       Type of signal: sine (default), square, sawtoothUp, sawtoothDown, triangle and noise")
-//            print("-\(OptionNames.frequency)    Frequncy in Hertz (defaut: 440)")
-//            print("-\(OptionNames.duration)     Duration in seconds (default: 5.0)")
-//            print("-\(OptionNames.amplitude)    Amplitude between 0.0 and 1.0 (default: 0.5)")
-//            print("-\(OptionNames.output)       Path to output file. If not set, no output file is written")
-//            print("-help or -h   Show this help\n")
-//            exit(0)
-//        }
-
         let getFloatForKeyOrDefault = { (key: String, defaultValue: Float) -> Float in
             let value = userDefaults.float(forKey: key)
             return value > 0.0 ? value : defaultValue
         }
+        // タッチしたx座標によってして周波数が変わる
+        switch xLocation {
+        case ..<screenSize:
+            freq = 1046
+        case ..<(screenSize * 2):
+            freq = 1108
+        case ..<(screenSize * 3):
+            freq = 1174
+        case ..<(screenSize * 4):
+            freq = 1244
+        case ..<(screenSize * 5):
+            freq = 1318
+        case ..<(screenSize * 6):
+            freq = 1396
+        case ..<(screenSize * 7):
+            freq = 1479
+        case ..<(screenSize * 8):
+            freq = 1567
+        case ..<(screenSize * 9):
+            freq = 1661
+        case ..<(screenSize * 10):
+            freq = 1760
+        case ..<(screenSize * 11):
+            freq = 1864
+        case ..<(screenSize * 12):
+            freq = 1975
+        default:
+            freq = 2093
+        }
         // 音の高さ
-        let frequency = getFloatForKeyOrDefault(OptionNames.frequency, 1000)
+        let frequency = getFloatForKeyOrDefault(OptionNames.frequency, freq)
         // 振り幅
         let amplitude = min(max(getFloatForKeyOrDefault(OptionNames.amplitude, 0.5), 0.0), 1.0)
         // 音の長さ

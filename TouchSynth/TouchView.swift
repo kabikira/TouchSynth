@@ -26,9 +26,9 @@ struct TouchView: View {
     @State var previousLocationY = 0
     @State var count = 0
 //    @State var point = CGPoint()
-    @State var location = CGPoint()
+//    @State var location = CGPoint()
     
-    var screenSize = UIScreen.main.bounds.width
+//    var screenSize = UIScreen.main.bounds.width
     
 //    var tap: some Gesture {　b
 //        TapGesture()
@@ -40,15 +40,17 @@ struct TouchView: View {
     var tap: some Gesture {
         DragGesture(minimumDistance: 0)
             .onEnded{ event in
-                self.location = event.location
-                print("Tap",location)
+//                self.location = event.location
+                signalGenerator.xLocation = Int(event.location.x)
+                signalGenerator.yLocation = Int(event.location.y)
+                print("Tap",event.location.x, event.location.y)
                 signalGenerator.signalPlay()
                 }
                 
             }
     
     var drag: some Gesture {
-        DragGesture(minimumDistance: 1, coordinateSpace: .local)
+        DragGesture(minimumDistance: 0.5, coordinateSpace: .local)
             .onChanged {
                 dragGesture in
                 
@@ -64,7 +66,7 @@ struct TouchView: View {
                     
                     print("ドラッグした座標(x\(dragGesture.location.x)y\(dragGesture.location.y))")
                     
-                } else if self.count == 13 {
+                } else if self.count == 12 {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                             touchSensitvity.timer?.invalidate()
                                             touchSensitvity.timer = nil
@@ -80,8 +82,8 @@ struct TouchView: View {
                 self.count = 0
                 touchSensitvity.isAdjust = false
                 print(previousLocationX,previousLocationY)
-                print(screenSize)
-                print(Int(screenSize/13))
+//                print(screenSize)
+//                print(Int(screenSize/13))
                 
             }
     }
