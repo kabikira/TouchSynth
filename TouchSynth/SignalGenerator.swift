@@ -7,11 +7,18 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
-class SignalGenerator {
+class SignalGenerator: ObservableObject {
+    @Published var xLocation = 0
+    @Published var yLocation = 0
+    var screenSize = Int(UIScreen.main.bounds.width)/13
+    
 // func外で宣言すると落ちる
 //    let engine = AVAudioEngine()
     func signalPlay() {
+        print("!!!!!!!!!!!!!\(screenSize + screenSize)")
+        print("\(xLocation)")
         let userDefaults = UserDefaults.standard
 
         struct OptionNames {
