@@ -14,10 +14,10 @@
 		3B2468CD293DAB53003220C2 /* TouchSynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2468CC293DAB53003220C2 /* TouchSynthTests.swift */; };
 		3B2468D7293DAB54003220C2 /* TouchSynthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2468D6293DAB54003220C2 /* TouchSynthUITests.swift */; };
 		3B2468D9293DAB54003220C2 /* TouchSynthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2468D8293DAB54003220C2 /* TouchSynthUITestsLaunchTests.swift */; };
+		3B364372294603F100C33672 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B364371294603F100C33672 /* PathView.swift */; };
 		3B3977BD2940452E0058CD38 /* SignalGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3977BC2940452E0058CD38 /* SignalGenerator.swift */; };
 		3B3977C12940FAED0058CD38 /* TouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3977C02940FAED0058CD38 /* TouchView.swift */; };
 		3B3977C329422E3C0058CD38 /* SignalGenerator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3977C229422E3C0058CD38 /* SignalGenerator2.swift */; };
-		3B3977C529423EBF0058CD38 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3977C429423EBF0058CD38 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,10 +48,10 @@
 		3B2468D2293DAB54003220C2 /* TouchSynthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchSynthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B2468D6293DAB54003220C2 /* TouchSynthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchSynthUITests.swift; sourceTree = "<group>"; };
 		3B2468D8293DAB54003220C2 /* TouchSynthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchSynthUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3B364371294603F100C33672 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 		3B3977BC2940452E0058CD38 /* SignalGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalGenerator.swift; sourceTree = "<group>"; };
 		3B3977C02940FAED0058CD38 /* TouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchView.swift; sourceTree = "<group>"; };
 		3B3977C229422E3C0058CD38 /* SignalGenerator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalGenerator2.swift; sourceTree = "<group>"; };
-		3B3977C429423EBF0058CD38 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				3B2468BB293DAB52003220C2 /* TouchSynthApp.swift */,
-				3B2468BD293DAB52003220C2 /* ContentView.swift */,
-				3B3977C02940FAED0058CD38 /* TouchView.swift */,
-				3B3977C429423EBF0058CD38 /* ButtonView.swift */,
+				3B3643732946043800C33672 /* View */,
 				3B3977BC2940452E0058CD38 /* SignalGenerator.swift */,
 				3B3977C229422E3C0058CD38 /* SignalGenerator2.swift */,
 				3B2468BF293DAB53003220C2 /* Assets.xcassets */,
@@ -137,6 +135,16 @@
 				3B2468D8293DAB54003220C2 /* TouchSynthUITestsLaunchTests.swift */,
 			);
 			path = TouchSynthUITests;
+			sourceTree = "<group>";
+		};
+		3B3643732946043800C33672 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B2468BD293DAB52003220C2 /* ContentView.swift */,
+				3B3977C02940FAED0058CD38 /* TouchView.swift */,
+				3B364371294603F100C33672 /* PathView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,7 +279,7 @@
 			files = (
 				3B3977BD2940452E0058CD38 /* SignalGenerator.swift in Sources */,
 				3B3977C12940FAED0058CD38 /* TouchView.swift in Sources */,
-				3B3977C529423EBF0058CD38 /* ButtonView.swift in Sources */,
+				3B364372294603F100C33672 /* PathView.swift in Sources */,
 				3B3977C329422E3C0058CD38 /* SignalGenerator2.swift in Sources */,
 				3B2468BE293DAB52003220C2 /* ContentView.swift in Sources */,
 				3B2468BC293DAB52003220C2 /* TouchSynthApp.swift in Sources */,

@@ -35,7 +35,7 @@ class SignalGenerator: ObservableObject {
             let value = userDefaults.float(forKey: key)
             return value > 0.0 ? value : defaultValue
         }
-        // タッチしたx座標によってして周波数が変わる
+        // タッチしたx座標によって周波数が変わる
         switch xLocation {
         case ..<screenSize:
             freq = 1046

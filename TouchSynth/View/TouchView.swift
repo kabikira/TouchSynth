@@ -89,7 +89,7 @@ struct TouchView: View {
     }
     
     var body: some View {
-        VStack {
+            
             Spacer()
             Rectangle()
                 .fill(Color.white)
@@ -98,8 +98,10 @@ struct TouchView: View {
                 .gesture(drag)
                 .gesture(tap)
                 .disabled(touchSensitvity.isAdjust)
+                .overlay {
+                    PathView()
+                            }
             
-        }
     }
 }
 //class GestureTouch {
