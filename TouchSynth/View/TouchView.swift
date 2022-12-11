@@ -50,7 +50,7 @@ struct TouchView: View {
             }
     
     var drag: some Gesture {
-        DragGesture(minimumDistance: 0.5, coordinateSpace: .local)
+        DragGesture(minimumDistance: 0.1, coordinateSpace: .local)
             .onChanged {
                 dragGesture in
                 
@@ -91,17 +91,15 @@ struct TouchView: View {
     var body: some View {
             
             Spacer()
-            Rectangle()
-                .fill(Color.white)
+            GridView()
+//                .fill(Color.white)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-                .border(Color.blue, width: 4)
                 .gesture(drag)
                 .gesture(tap)
                 .disabled(touchSensitvity.isAdjust)
-                .overlay {
-                    PathView()
-                    
-                            }
+//                .overlay {
+//                    GridView()
+//                            }
             
     }
 }

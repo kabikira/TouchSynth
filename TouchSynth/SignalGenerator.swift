@@ -12,7 +12,7 @@ import UIKit
 class SignalGenerator: ObservableObject {
     @Published var xLocation = 0
     @Published var yLocation = 0
-    var screenSize = Int(UIScreen.main.bounds.width)/12
+    var screenSize = Int(UIScreen.main.bounds.width)/8
     // タッチしたx座標によってして周波数が変わる
     var freq: Float = 0
     
@@ -51,25 +51,25 @@ class SignalGenerator: ObservableObject {
             freq = 1396
         case ..<(screenSize * 7):
             freq = 1479
-        case ..<(screenSize * 8):
-            freq = 1567
-        case ..<(screenSize * 9):
-            freq = 1661
-        case ..<(screenSize * 10):
-            freq = 1760
-        case ..<(screenSize * 11):
-            freq = 1864
-        case ..<(screenSize * 12):
-            freq = 1975
+//        case ..<(screenSize * 8):
+//            freq = 1567
+//        case ..<(screenSize * 9):
+//            freq = 1661
+//        case ..<(screenSize * 10):
+//            freq = 1760
+//        case ..<(screenSize * 11):
+//            freq = 1864
+//        case ..<(screenSize * 12):
+//            freq = 1975
         default:
-            freq = 2093
+            freq = 1567
         }
         // 音の高さ
         let frequency = getFloatForKeyOrDefault(OptionNames.frequency, freq)
         // 振り幅
         let amplitude = min(max(getFloatForKeyOrDefault(OptionNames.amplitude, 0.5), 0.0), 1.0)
         // 音の長さ
-        let duration = getFloatForKeyOrDefault(OptionNames.duration, 0.5)
+        let duration = getFloatForKeyOrDefault(OptionNames.duration, 0.3)
         let outputPath = userDefaults.string(forKey: OptionNames.output)
 
         let twoPi = 2 * Float.pi
