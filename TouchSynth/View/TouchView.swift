@@ -100,6 +100,7 @@ struct TouchView: View {
                 .disabled(touchSensitvity.isAdjust)
                 .overlay {
                     PathView()
+                    
                             }
             
     }
