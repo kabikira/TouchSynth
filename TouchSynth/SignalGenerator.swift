@@ -16,29 +16,29 @@ class SignalGenerator: ObservableObject {
     // タッチしたx座標によってして周波数が変わる
     var freq: Float = 0
     // サンプルレートマイナス数値
-    var mod: Double = 12000
-    
-    func chageMod() -> Double {
-        switch yLocation {
-        case ..<screenSize:
-            mod *= 1.125
-        case ..<(screenSize * 2):
-            mod *= 1.250
-        case ..<(screenSize * 3):
-            mod *= 1.375
-        case ..<(screenSize * 4):
-            mod *= 1.500
-        case ..<(screenSize * 5):
-            mod *= 1.625
-        case ..<(screenSize * 6):
-            mod *= 1.750
-        case ..<(screenSize * 7):
-            mod *= 1.875
-        default:
-            mod *= 2
-        }
-        return mod
-    }
+//    var mod: Double = 12000
+//
+//    func chageMod() -> Double {
+//        switch yLocation {
+//        case ..<screenSize:
+//            mod *= 1.125
+//        case ..<(screenSize * 2):
+//            mod *= 1.250
+//        case ..<(screenSize * 3):
+//            mod *= 1.375
+//        case ..<(screenSize * 4):
+//            mod *= 1.500
+//        case ..<(screenSize * 5):
+//            mod *= 1.625
+//        case ..<(screenSize * 6):
+//            mod *= 1.750
+//        case ..<(screenSize * 7):
+//            mod *= 1.875
+//        default:
+//            mod *= 2
+//        }
+//        return mod
+//    }
     
     func changeFreq() -> Float {
         // タッチしたx座標によって周波数が変わる
@@ -46,17 +46,17 @@ class SignalGenerator: ObservableObject {
         case ..<screenSize:
             freq = 1046
         case ..<(screenSize * 2):
-            freq = 1108
-        case ..<(screenSize * 3):
             freq = 1174
-        case ..<(screenSize * 4):
-            freq = 1244
-        case ..<(screenSize * 5):
+        case ..<(screenSize * 3):
             freq = 1318
-        case ..<(screenSize * 6):
+        case ..<(screenSize * 4):
             freq = 1396
+        case ..<(screenSize * 5):
+            freq = 1567
+        case ..<(screenSize * 6):
+            freq = 1760
         case ..<(screenSize * 7):
-            freq = 1479
+            freq = 1975
 //        case ..<(screenSize * 8):
 //            freq = 1567
 //        case ..<(screenSize * 9):
@@ -68,7 +68,7 @@ class SignalGenerator: ObservableObject {
 //        case ..<(screenSize * 12):
 //            freq = 1975
         default:
-            freq = 1567
+            freq = 2093
         }
         return freq
 
@@ -164,7 +164,7 @@ class SignalGenerator: ObservableObject {
 //        let sampleRate = Float(outputFormat.sampleRate)
         let sampleRate = Float(44100)
         
-        let modRate = Double(sampleRate) - chageMod()
+        let modRate = Double(sampleRate)
         // 入力に対して出力フォーマットを使用するが、チャンネル数を1に減らす。
         let inputFormat = AVAudioFormat(commonFormat: outputFormat.commonFormat,
                                         sampleRate: modRate,
