@@ -15,26 +15,32 @@ class SignalGenerator: ObservableObject {
     var screenSize = Int(UIScreen.main.bounds.width)/8
     // タッチしたx座標によってして周波数が変わる
     var freq: Float = 0
+    // サンプルレートマイナス数値
+    var mod: Double = 12000
     
-// func外で宣言すると落ちる
-//    let engine = AVAudioEngine()
-    func signalPlay() {
-        print("!!!!!!!!!!!!!\(screenSize + screenSize)")
-        print("signalGenerator",xLocation, yLocation)
-        let userDefaults = UserDefaults.standard
-
-        struct OptionNames {
-            static let signal = "signal"
-            static let frequency = "freq"
-            static let duration = "duration"
-            static let output = "output"
-            static let amplitude = "amplitude"
+    func chageMod() -> Double {
+        switch yLocation {
+        case ..<screenSize:
+            mod *= 1.125
+        case ..<(screenSize * 2):
+            mod *= 1.250
+        case ..<(screenSize * 3):
+            mod *= 1.375
+        case ..<(screenSize * 4):
+            mod *= 1.500
+        case ..<(screenSize * 5):
+            mod *= 1.625
+        case ..<(screenSize * 6):
+            mod *= 1.750
+        case ..<(screenSize * 7):
+            mod *= 1.875
+        default:
+            mod *= 2
         }
-
-        let getFloatForKeyOrDefault = { (key: String, defaultValue: Float) -> Float in
-            let value = userDefaults.float(forKey: key)
-            return value > 0.0 ? value : defaultValue
-        }
+        return mod
+    }
+    
+    func changeFreq() -> Float {
         // タッチしたx座標によって周波数が変わる
         switch xLocation {
         case ..<screenSize:
@@ -64,12 +70,36 @@ class SignalGenerator: ObservableObject {
         default:
             freq = 1567
         }
+        return freq
+
+    }
+    
+// func外で宣言すると落ちる
+//    let engine = AVAudioEngine()
+    func signalPlay() {
+        print("!!!!!!!!!!!!!\(screenSize + screenSize)")
+        print("signalGenerator",xLocation, yLocation)
+        let userDefaults = UserDefaults.standard
+
+        struct OptionNames {
+            static let signal = "signal"
+            static let frequency = "freq"
+            static let duration = "duration"
+            static let output = "output"
+            static let amplitude = "amplitude"
+        }
+
+        let getFloatForKeyOrDefault = { (key: String, defaultValue: Float) -> Float in
+            let value = userDefaults.float(forKey: key)
+            return value > 0.0 ? value : defaultValue
+        }
+
         // 音の高さ
-        let frequency = getFloatForKeyOrDefault(OptionNames.frequency, freq)
+        let frequency = getFloatForKeyOrDefault(OptionNames.frequency, changeFreq())
         // 振り幅
         let amplitude = min(max(getFloatForKeyOrDefault(OptionNames.amplitude, 0.5), 0.0), 1.0)
         // 音の長さ
-        let duration = getFloatForKeyOrDefault(OptionNames.duration, 0.3)
+        let duration = getFloatForKeyOrDefault(OptionNames.duration, 0.5)
         let outputPath = userDefaults.string(forKey: OptionNames.output)
 
         let twoPi = 2 * Float.pi
@@ -131,10 +161,13 @@ class SignalGenerator: ObservableObject {
         let mainMixer = engine.mainMixerNode
         let output = engine.outputNode
         let outputFormat = output.inputFormat(forBus: 0)
-        let sampleRate = Float(outputFormat.sampleRate)
+//        let sampleRate = Float(outputFormat.sampleRate)
+        let sampleRate = Float(44100)
+        
+        let modRate = Double(sampleRate) - chageMod()
         // 入力に対して出力フォーマットを使用するが、チャンネル数を1に減らす。
         let inputFormat = AVAudioFormat(commonFormat: outputFormat.commonFormat,
-                                        sampleRate: outputFormat.sampleRate,
+                                        sampleRate: modRate,
                                         channels: 1,
                                         interleaved: outputFormat.isInterleaved)
 
